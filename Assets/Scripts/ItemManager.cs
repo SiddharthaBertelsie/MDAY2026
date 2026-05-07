@@ -19,6 +19,11 @@ namespace MDAY2026.ItemGrabber
 
         #region Methods
 
+        public void AddToItemList(Item item)
+        {
+            items.Add(item);
+        }
+
         private void InitialiseManager()
         {
 

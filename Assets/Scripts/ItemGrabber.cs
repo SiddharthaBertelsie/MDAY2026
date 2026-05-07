@@ -102,9 +102,12 @@ namespace MDAY2026.ItemGrabber
                     _selectedObject = null;
                     _selectedObject = item.gameObject;
                 }
-                else
+                else if (item.HasBeenSelected == false)
                 {
-                    _selectedObject = null;
+                    if (item.gameObject == _selectedObject) // Need to check if false one's specically the selected one. Otherwise others in list will set it to null
+                    {
+                        _selectedObject = null;
+                    }
                 }
             }
         }

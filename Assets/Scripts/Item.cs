@@ -12,7 +12,7 @@ namespace MDAY2026.ItemGrabber
 
         [Space(5)]
 
-        private bool _hasBeenSelected = false;
+        [SerializeField] private bool _hasBeenSelected = false;
         public bool HasBeenSelected {  get { return _hasBeenSelected; } set { _hasBeenSelected = value; } }
 
         [Header("Components")]
@@ -37,6 +37,7 @@ namespace MDAY2026.ItemGrabber
                     Debug.Log("We've selected the item!");
                     _hasBeenSelected = true;
                     _rigidbody.linearVelocity = Vector3.zero; // Do this as obj will fall faster and faster each time it is dropped and selected
+                    _rigidbody.angularVelocity = Vector3.zero;
                     break;
             }
         }

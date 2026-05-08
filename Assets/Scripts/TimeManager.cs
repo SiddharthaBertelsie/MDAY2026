@@ -61,6 +61,11 @@ namespace MDAY2026.TimeLimit
             }
         }
 
+        public void StopTimer()
+        {
+            _timeRunning = false;
+        }
+
         private void InitialiseTimer()
         {
             _timeLimitCurrentAmount = _timeLimitStartingAmount;

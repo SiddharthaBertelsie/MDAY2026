@@ -32,7 +32,12 @@ public class GameManager : MonoBehaviour
 
     #region Methods
 
-
+    public void EndGame()
+    {
+        _gameOver = true;
+        
+        // Do other stuff here
+    }
 
     #endregion
 

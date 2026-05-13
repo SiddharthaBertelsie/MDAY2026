@@ -78,7 +78,7 @@ namespace MDAY2026.ItemGrabber
                     Vector3 screenPosition = _mainCamera.ScreenToWorldPoint(readValue);
 
                     // 1 is what keeps the player directly over the highet ground in world space
-                    _selectedObject.transform.position = new Vector3(screenPosition.x, screenPosition.y, 1);
+                    _selectedObject.transform.position = new Vector3(screenPosition.x, screenPosition.y, 0.1f);
                 }
                 // These else conditions ensure we are kept in the bounds and ensure we dont get stuck out of them by
                 // moving us slightly out

@@ -1,5 +1,5 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
         _gameOver = true;
         
         // Do other stuff here
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 
     #endregion

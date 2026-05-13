@@ -8,6 +8,16 @@ namespace MDAY2026.ItemGrabber
     {
         #region Variables
 
+        [Header("Parameters")]
+
+        [Space(5)]
+
+        [SerializeField] private string _itemName;
+        public string ItemName { get { return _itemName; } set { _itemName = value; } }
+
+        [SerializeField] private string _itemType;
+        public string ItemType { get { return _itemType; } set { _itemType = value; } }
+
         [Header("Variables")]
 
         [Space(5)]

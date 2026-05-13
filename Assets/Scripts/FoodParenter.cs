@@ -1,4 +1,6 @@
+using MDAY2026.ItemGrabber;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace MDAY2026.FoodCreation
 {
@@ -12,6 +14,9 @@ namespace MDAY2026.FoodCreation
 
         [SerializeField] private Transform _objectToParentTo;
 
+        [SerializeField] private List<Item> _parentedItems = new List<Item>();
+        public List<Item> ParentedItems {  get { return _parentedItems; } }
+
         #endregion
 
         #region Methods
@@ -21,6 +26,11 @@ namespace MDAY2026.FoodCreation
             if (objectToParent.gameObject.CompareTag("Food") && objectToParent.parent != _objectToParentTo)
             {
                 objectToParent.parent = _objectToParentTo;
+
+                if (objectToParent.GetComponent<Item>() != null)
+                {
+                    _parentedItems.Add(objectToParent.GetComponent<Item>()); // Add to list so we can check if current items on plate meet conditions
+                }
             }
         }
 
@@ -29,6 +39,11 @@ namespace MDAY2026.FoodCreation
             if (objectToParent.gameObject.CompareTag("Food") && objectToParent.parent == _objectToParentTo)
             {
                 objectToParent.parent = null;
+
+                if (objectToParent.GetComponent<Item>() != null)
+                {
+                    _parentedItems.Remove(objectToParent.GetComponent<Item>());
+                }
             }
         }
 

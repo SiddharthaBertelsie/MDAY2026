@@ -1,3 +1,4 @@
+using MDAY2026.SoundEffects;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,13 +24,19 @@ namespace MDAY2026.ItemGrabber
         [Space(5)]
 
         [SerializeField] private bool _hasBeenSelected = false;
-        public bool HasBeenSelected {  get { return _hasBeenSelected; } set { _hasBeenSelected = value; } }
+        public bool HasBeenSelected { get { return _hasBeenSelected; } set { _hasBeenSelected = value; } }
 
         [Header("Components")]
 
         [Space(5)]
 
         [SerializeField] private Rigidbody _rigidbody;
+
+        [Header("Scripts")]
+
+        [Space(5)]
+
+        [SerializeField] private FoodSoundPlayer _foodSoundPlayer;
 
         #endregion
 
@@ -41,6 +48,7 @@ namespace MDAY2026.ItemGrabber
             {
                 case true:
                     Debug.Log("Dropping item");
+                    _foodSoundPlayer.PlaySFXClipAt("ItemGrabbed", transform.position, 1, false);
                     _hasBeenSelected = false;
                     break;
                 case false:
@@ -59,7 +67,7 @@ namespace MDAY2026.ItemGrabber
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            _foodSoundPlayer = GameObject.FindGameObjectWithTag("SoundPlayer").GetComponent<FoodSoundPlayer>();
         }
 
         // Update is called once per frame

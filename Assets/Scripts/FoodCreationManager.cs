@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using MDAY2026.FoodConditions;
+using MDAY2026.SoundEffects;
 
 namespace MDAY2026.FoodCreation
 {
@@ -32,6 +33,8 @@ namespace MDAY2026.FoodCreation
 
         [SerializeField] private FoodConditionChecker _foodConditionChecker;
 
+        [SerializeField] private FoodSoundPlayer _foodSoundPlayer;
+
         #endregion
 
         #region Methods
@@ -47,7 +50,18 @@ namespace MDAY2026.FoodCreation
             if (_resultsScreenDisplayDelayTimer.HasExpired == true && _displayingResults == true)
             {
                 // Get final grade for food here from FoodConditionChecker
-                _resultsText.text = _foodConditionChecker.GetGrade().ToString() + "/5 stars";
+                float grade = _foodConditionChecker.GetGrade();
+                _resultsText.text = grade.ToString() + "/5 stars";
+
+                // Play the appropriote SFX for poor or good grade
+                if (grade < 3)
+                {
+                    _foodSoundPlayer.PlaySFXClipAt("RatingBad", transform.position, 1, false);
+                }
+                else
+                {
+                    _foodSoundPlayer.PlaySFXClipAt("RatingGood", transform.position, 1, false);
+                }
 
                 _resultsScreen.SetActive(true);
 

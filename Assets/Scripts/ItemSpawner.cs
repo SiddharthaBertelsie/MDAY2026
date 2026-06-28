@@ -1,5 +1,6 @@
 using UnityEngine;
 using MDAY2026.ItemGrabber;
+using MDAY2026.SoundEffects;
 
 namespace MDAY2026.ItemMenu
 {
@@ -22,6 +23,8 @@ namespace MDAY2026.ItemMenu
 
         [SerializeField] private ItemManager _itemManager;
 
+        [SerializeField] private FoodSoundPlayer _foodSoundPlayer;
+
         #endregion
 
         #region Methods
@@ -32,6 +35,8 @@ namespace MDAY2026.ItemMenu
 
             GameObject spawnedItemObject = Instantiate(_itemToSpawn, _itemSpawnPoint.position, Quaternion.identity);
             Item spawnedItemClass = spawnedItemObject.GetComponentInChildren<Item>();
+
+            _foodSoundPlayer.PlaySFXClipAt("ItemSpawned", spawnedItemObject.transform.position, 1, true);
 
             _itemManager.AddToItemList(spawnedItemClass);
         }
